@@ -55,3 +55,21 @@ class Circle(Shape):
     def __add__(self, other):
         Circle.operators_check_and_raise(other, '+')
         return Circle(self.koter + other.koter, self.radious + other.radious)
+    # +=
+    def __iadd__(self, other):
+        Circle.operators_check_and_raise(other, '+=')
+        return Circle(self.koter + other.koter, self.radious + other.radious)
+    # -
+    def __sub__(self, other):
+        Circle.operators_check_and_raise(other, '-')
+        new_cir =  Circle(self.koter - other.koter, self.radious - other.radious)
+        if new_cir.radious < 0 or new_cir.koter < 0:
+            return Circle(0,0)
+        return new_cir
+    # -=
+    def __isub__(self, other):
+        Circle.operators_check_and_raise(other, '-=')
+        new_cir =  Circle(self.koter - other.koter, self.radious - other.radious)
+        if new_cir.radious < 0 or new_cir.koter < 0:
+            return Circle(0,0)
+        return new_cir

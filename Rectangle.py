@@ -60,3 +60,21 @@ class Rectangle(Shape):
     def __add__(self, other):
         Rectangle.calc_check_and_raise(other, '+')
         return Rectangle(self.height + other.height, self.length + other.length)
+    # +=
+    def __iadd__(self, other):
+        Rectangle.calc_check_and_raise(other, '+=')
+        return Rectangle(self.height + other.height, self.length + other.length)
+    # -
+    def __sub__(self, other):
+        Rectangle.calc_check_and_raise(other, '-')
+        new_rec =  Rectangle(self.height - other.height, self.length - other.length)
+        if new_rec.length < 0 or new_rec.height < 0:
+            return Rectangle(0,0)
+        return new_rec
+    # -=
+    def __isub__(self, other):
+        Rectangle.calc_check_and_raise(other, '-=')
+        new_rec =  Rectangle(self.height - other.height, self.length - other.length)
+        if new_rec.length < 0 or new_rec.height < 0:
+            return Rectangle(0,0)
+        return new_rec

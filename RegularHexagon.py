@@ -53,3 +53,21 @@ class RegularHexagon(Shape):
     def __add__(self, other):
         RegularHexagon.operators_check_and_raise(other, '+')
         return RegularHexagon(self.side + other.side)
+    # +=
+    def __iadd__(self, other):
+        RegularHexagon.operators_check_and_raise(other, '+=')
+        return RegularHexagon(self.side + other.side)
+    # -
+    def __sub__(self, other):
+        RegularHexagon.operators_check_and_raise(other, '-')
+        new_rec =  RegularHexagon(self.side - other.side)
+        if new_rec.side < 0:
+            return RegularHexagon(0)
+        return new_rec
+    # -=
+    def __isub__(self, other):
+        RegularHexagon.operators_check_and_raise(other, '-=')
+        new_rec =  RegularHexagon(self.side - other.side)
+        if new_rec.side < 0:
+            return RegularHexagon(0)
+        return new_rec

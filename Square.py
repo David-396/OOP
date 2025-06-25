@@ -1,5 +1,5 @@
 from Shapes import Shape
-from Rectangle import Rectangle
+import Rectangle
 
 class Square(Shape):
     def __init__(self, side):
@@ -58,3 +58,21 @@ class Square(Shape):
     def __add__(self, other):
         Square.calc_check_and_raise(other, '+')
         return Square(self.side + other.side)
+    # +=
+    def __iadd__(self, other):
+        Square.calc_check_and_raise(other, '+=')
+        return Square(self.side + other.side)
+    # -
+    def __sub__(self, other):
+        Rectangle.calc_check_and_raise(other, '-')
+        new_rec =  Square(self.side - other.side)
+        if new_rec.side < 0:
+            return Square(0)
+        return new_rec
+    # -=
+    def __isub__(self, other):
+        Rectangle.calc_check_and_raise(other, '-=')
+        new_rec =  Square(self.side - other.side)
+        if new_rec.side < 0:
+            return Square(0)
+        return new_rec

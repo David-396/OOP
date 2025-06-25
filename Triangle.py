@@ -54,3 +54,21 @@ class Triangle(Shape):
     def __add__(self, other):
         Triangle.operators_check_and_raise(other, '+')
         return Triangle(self.height + other.height, self.length + other.length , self.hypotenuse + other.hypotenuse)
+    # +=
+    def __iadd__(self, other):
+        Triangle.operators_check_and_raise(other, '+=')
+        return Triangle(self.height + other.height, self.length + other.length , self.hypotenuse + other.hypotenuse)
+    # -
+    def __sub__(self, other):
+        Triangle.operators_check_and_raise(other, '-')
+        new_tr =  Triangle(self.height - other.height, self.length - other.length, self.hypotenuse - other.hypotenuse)
+        if new_tr.height < 0 or new_tr.length < 0 or new_tr.hypotenuse < 0:
+            return Triangle(0,0,0)
+        return new_tr
+    # -=
+    def __isub__(self, other):
+        Triangle.operators_check_and_raise(other, '-=')
+        new_tr =  Triangle(self.height - other.height, self.length - other.length, self.hypotenuse - other.hypotenuse)
+        if new_tr.height < 0 or new_tr.length < 0 or new_tr.hypotenuse < 0:
+            return Triangle(0,0,0)
+        return new_tr
