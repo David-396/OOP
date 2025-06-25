@@ -3,10 +3,55 @@ import  math
 
 class Circle(Shape):
     def __init__(self, koter, radious):
+        try:
+            float(koter), float(radious)
+        except Exception:
+            raise ValueError("you can enter only numbers!")
+
         super().__init__()
         self.koter = koter
         self.radious = radious
 
 
     def get_area(self):
-        return (3.14159 * self.radious) ** 2
+        return (math.pi * self.radious) ** 2
+    def get_perimeter(self):
+        return 2 * self.radious * math.pi
+
+    def __repr__(self):
+        return f"Circle(koter= {self.koter}, radious = {self.radious})"
+
+    @staticmethod
+    def operators_check_and_raise(other, operator):
+        if not isinstance(other, Circle):
+            raise TypeError(f"operator {operator} is only between Circle and Circle")
+
+    # >=
+    def __ge__(self, other):
+        Circle.operators_check_and_raise(other, '>=')
+        return self.get_area() >= other.get_area()
+    # >
+    def __gt__(self, other):
+        Circle.operators_check_and_raise(other, '>')
+        return self.get_area() > other.get_area()
+    # <
+    def __lt__(self, other):
+        Circle.operators_check_and_raise(other, '<')
+        return self.get_area() < other.get_area()
+    # <=
+    def __le__(self, other):
+        Circle.operators_check_and_raise(other, '<=')
+        return self.get_area() <= other.get_area()
+    # ==
+    def __eq__(self, other):
+        Circle.operators_check_and_raise(other, '==')
+        return self.get_area() == other.get_area()
+    # !=
+    def __ne__(self, other):
+        Circle.operators_check_and_raise(other, '!=')
+        return self.get_area() != other.get_area()
+
+    # +
+    def __add__(self, other):
+        Circle.operators_check_and_raise(other, '+')
+        return Circle(self.koter + other.koter, self.radious + other.radious)
